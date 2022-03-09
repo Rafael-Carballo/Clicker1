@@ -48,13 +48,13 @@
         android:id="@+id/textView"
         android:layout_width="280dp"
         android:layout_height="52dp"
-        android:layout_marginTop="60dp"
         android:text="Que contamos?"
         android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.55"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.021" />
 
     <TextView
         android:id="@+id/contador"
@@ -75,6 +75,7 @@
         android:layout_marginBottom="605dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:text="Clicks"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"

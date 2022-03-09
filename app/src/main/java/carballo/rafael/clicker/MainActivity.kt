@@ -11,8 +11,11 @@ import androidx.appcompat.app.AlertDialog
 
 class MainActivity : AppCompatActivity() {
     var cuenta:Int =0
+    var cosa:String? ="clicks"
     lateinit var tvcontador :TextView
     lateinit var et_que:EditText
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
 
@@ -31,8 +34,25 @@ class MainActivity : AppCompatActivity() {
             tvcontador.setText("$cuenta")
         }
         btn_sus.setOnClickListener(){
-            cuenta--
-            tvcontador.setText("$cuenta")
+            if(cuenta==0){
+                val  alertDialog:AlertDialog=this.let {
+                    val builder=AlertDialog.Builder(it)
+                    builder.apply {
+                        setPositiveButton("Ok",DialogInterface.OnClickListener{
+                                dialog,id->//do nothing xd
+                        })
+
+                    }
+                    //set other dialog properties
+                    builder.setMessage("no aceptamos menos de 0").setTitle("Aviso!")
+                    //create the AlertDialog
+                    builder.create()
+            }
+            }else
+            {
+                cuenta--
+                tvcontador.setText("$cuenta")
+            }
         }
         btn_del.setOnClickListener(){
             val  alertDialog:AlertDialog=this.let {
@@ -60,7 +80,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        val sharedpref=this.getPreferences(Context.MODE_PRIVATE) ?:return
+        val sharedpref=this.getPreferences(Context.MODE_PRIVATE)
         with(sharedpref.edit()){
             putInt("contador",cuenta)
             putString("que",et_que.text.toString())
@@ -71,10 +91,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        val sharedpref=this.getPreferences(Context.MODE_PRIVATE)?:return
+        val sharedpref=this.getPreferences(Context.MODE_PRIVATE)
         cuenta=sharedpref.getInt("contador",0)
-        tvcontador.setText(cuenta)
-        et_que.setText(sharedpref.getString("que","clicks"))
+        tvcontador.setText("$cuenta")
+        cosa=sharedpref.getString("que","clicks")
+        et_que.setText(cosa)
     }
 
 
